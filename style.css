@@ -1,84 +1,76 @@
-body {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
   background: #0d0d0d;
   color: #fff;
-  font-family: 'Segoe UI', sans-serif;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-  overflow-x: hidden;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  transition: background 0.3s ease;
 }
 
 .container {
   text-align: center;
-  padding: 30px;
-  margin-top: 60px;
-  border-radius: 20px;
   background: #1a1a1a;
-  box-shadow: 0 0 30px #ff0066;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #ff0066;
   width: 90%;
-  max-width: 600px;
-  transition: all 0.4s ease-in-out;
-}
-
-.glow {
-  box-shadow: 0 0 60px 10px #00ffcc;
-}
-
-.explode {
-  transform: scale(1.1) rotate(2deg);
-  box-shadow: 0 0 100px 30px #ff0066, 0 0 40px 10px #ff3300 inset;
-  animation: shake 0.5s ease-in-out;
-}
-
-@keyframes shake {
-  0% { transform: translate(0); }
-  25% { transform: translate(-5px, 5px); }
-  50% { transform: translate(5px, -5px); }
-  75% { transform: translate(-3px, -3px); }
-  100% { transform: translate(0); }
+  max-width: 500px;
 }
 
 h1 {
-  font-size: 2.5rem;
-  margin-bottom: 25px;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 10px;
+  width: 80%;
+  font-size: 1rem;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+select {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 button {
-  padding: 18px 35px;
+  padding: 15px 30px;
   background-color: #ff0066;
   color: white;
   border: none;
-  font-size: 1.3rem;
-  border-radius: 10px;
+  font-size: 1.2rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  transition: background 0.3s;
 }
 
 button:hover {
   background-color: #e6005c;
-  transform: scale(1.05);
 }
 
 #messageBox {
-  margin-top: 35px;
-  font-size: 1.4rem;
-  color: #f2f2f2;
-  transition: all 0.3s;
+  margin-top: 20px;
+  font-size: 1.3rem;
+  color: #f0f0f0;
 }
 
-/* Meme Section */
-.meme-section {
-  margin: 40px 20px;
-  text-align: center;
-}
-
-.meme-section img {
-  max-width: 400px;
-  width: 90%;
-  border-radius: 10px;
-  box-shadow: 0 0 20px #333;
+img {
+  margin-top: 30px;
+  max-width: 100%;
+  border-radius: 12px;
+  border: 2px solid #ff0066;
 }
