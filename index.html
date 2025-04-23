@@ -1,67 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>😤 RAGE PAGE 😤</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAGE PAGE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="container" id="rageBox">
+    <h1>RAGE PAGE</h1><textarea id="userText" rows="4" placeholder="Type your rage here..."></textarea><br />
 
-  <div class="container">
-    <h1>😤 RAGE PAGE 😤</h1>
+<label for="voiceSelect">Choose Voice:</label>
+<select id="voiceSelect"></select><br />
 
-    <button id="screamButton">SCREAM!</button>
+<button id="screamButton">SCREAM</button>
 
-    <input type="text" id="userText" placeholder="Type your rage here..." />
+<div id="messageBox">Click the button to scream into the void...</div>
 
-    <label for="voiceSelect">Choose Voice:</label>
-    <select id="voiceSelect">
-      <!-- English Voices -->
-      <option value="UK English Male">UK English (Male)</option>
-      <option value="UK English Female">UK English (Female)</option>
-      <option value="US English Male">US English (Male)</option>
-      <option value="US English Female">US English (Female)</option>
+  </div>  <script src="https://code.responsivevoice.org/responsivevoice.js?key=zleSu5a9"></script>  <script>
+    const screamButton = document.getElementById('screamButton');
+    const voiceSelect = document.getElementById('voiceSelect');
+    const userText = document.getElementById('userText');
+    const messageBox = document.getElementById('messageBox');
+    const rageBox = document.getElementById('rageBox');
 
-      <!-- Spanish Voices -->
-      <option value="Spanish Male">Spanish (Male)</option>
-      <option value="Spanish Female">Spanish (Female)</option>
+    function populateVoices() {
+      const voices = responsiveVoice.getVoices();
+      voices.forEach(voice => {
+        const option = document.createElement('option');
+        option.value = voice.name;
+        option.textContent = voice.name;
+        voiceSelect.appendChild(option);
+      });
+    }
 
-      <!-- French Voices -->
-      <option value="French Male">French (Male)</option>
-      <option value="French Female">French (Female)</option>
+    function shake(intensity) {
+      document.body.style.transition = 'transform 0.1s';
+      document.body.style.transform = translate(${Math.random() * intensity}px, ${Math.random() * intensity}px);
+      setTimeout(() => {
+        document.body.style.transform = 'translate(0, 0)';
+      }, 100);
+    }
 
-      <!-- German Voices -->
-      <option value="German Male">German (Male)</option>
-      <option value="German Female">German (Female)</option>
+    screamButton.addEventListener('click', () => {
+      const text = userText.value.trim();
+      const selectedVoice = voiceSelect.value;
 
-      <!-- Italian Voices -->
-      <option value="Italian Male">Italian (Male)</option>
-      <option value="Italian Female">Italian (Female)</option>
+      if (!text) {
+        messageBox.textContent = "Type something to scream!";
+        return;
+      }
 
-      <!-- Portuguese Voices -->
-      <option value="Portuguese Male">Portuguese (Male)</option>
-      <option value="Portuguese Female">Portuguese (Female)</option>
+      messageBox.textContent = "Screaming...";
 
-      <!-- Dutch Voices -->
-      <option value="Dutch Male">Dutch (Male)</option>
-      <option value="Dutch Female">Dutch (Female)</option>
+      responsiveVoice.speak(text, selectedVoice, {
+        onstart: () => {
+          rageBox.style.animation = 'glow 0.5s infinite alternate';
+        },
+        onend: () => {
+          rageBox.style.animation = 'glow 2s infinite alternate';
+        },
+        volume: 1,
+        rate: 1,
+        pitch: 1
+      });
 
-      <!-- Other Languages -->
-      <option value="Russian Male">Russian (Male)</option>
-      <option value="Russian Female">Russian (Female)</option>
-      <option value="Japanese Male">Japanese (Male)</option>
-      <option value="Japanese Female">Japanese (Female)</option>
-      <option value="Chinese Male">Chinese (Male)</option>
-      <option value="Chinese Female">Chinese (Female)</option>
-    </select>
+      // Optional: shake effect based on message length
+      const intensity = Math.min(text.length * 0.5, 50);
+      shake(intensity);
+    });
 
-    <div id="messageBox">Click the button to scream into the void...</div>
-  </div>
-
-  <!-- ResponsiveVoice Script with Your API Key -->
-  <script src="https://code.responsivevoice.org/responsivevoice.js?key=zleSu5a9"></script>
-  <script src="script.js"></script>
-
-</body>
+    populateVoices();
+  </script></body>
 </html>
