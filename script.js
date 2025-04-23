@@ -1,35 +1,34 @@
 const screamButton = document.getElementById("screamButton");
-const messageBox = document.getElementById("messageBox");
 const userText = document.getElementById("userText");
 const voiceSelect = document.getElementById("voiceSelect");
+const messageBox = document.getElementById("messageBox");
 
 screamButton.addEventListener("click", () => {
-  const text = userText.value.trim();
-  const voice = voiceSelect.value;
-
-  if (!text) {
-    messageBox.textContent = "SAY SOMETHING RAGEY!";
+  const message = userText.value.trim();
+  if (!message) {
+    messageBox.textContent = "Type something first!";
     return;
   }
 
-  messageBox.textContent = text;
-  messageBox.classList.add("glow");
+  messageBox.textContent = message;
 
-  responsiveVoice.speak(text, voice);
+  const selectedVoice = voiceSelect.value;
+  responsiveVoice.speak(message, selectedVoice);
 
-  // Background mood based on caps (shouting)
-  const capsRatio = text.split("").filter(c => c === c.toUpperCase()).length / text.length;
-
-  if (capsRatio > 0.6) {
-    document.body.style.background = "radial-gradient(circle, red, black)";
-    document.body.classList.add("shake");
+  // Glow color based on voice (positive vs dramatic)
+  if (selectedVoice.includes("Spanish") || selectedVoice.includes("French") || selectedVoice.includes("Japanese")) {
+    messageBox.style.borderColor = "dodgerblue";
+    messageBox.style.boxShadow = "0 0 20px dodgerblue";
   } else {
-    document.body.style.background = "radial-gradient(circle, #00ffaa, #002211)";
-    document.body.classList.remove("shake");
+    messageBox.style.borderColor = "red";
+    messageBox.style.boxShadow = "0 0 20px red";
   }
 
+  // Add shaking and vibration
+  messageBox.classList.add("shake");
+  navigator.vibrate([100, 50, 100]);
+
   setTimeout(() => {
-    messageBox.classList.remove("glow");
-    document.body.classList.remove("shake");
-  }, 2000);
+    messageBox.classList.remove("shake");
+  }, 1000);
 });
