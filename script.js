@@ -1,18 +1,12 @@
 const messages = [
-  "I HATE MONDAYS 😤",
-  "WHY DO ADS EXIST 😩",
-  "STOP ASKING ME FOR A SUBSCRIPTION 💢",
-  "I JUST WANTED TO RELAX 🫠",
-  "WHY IS LIFE LIKE THIS 💀",
-  "GIVE ME WIFI THAT WORKS 😠",
-  "I SCREAMED AND I FEEL ALIVE 😵‍💫",
-  "NOTHING MAKES SENSE BUT OK 😶‍🌫",
-  "SCREAMING INTO THE VOID IS THERAPY 👹",
-  "I FORGOT MY PASSWORD AGAIN 😡",
-  "WHERE IS THE SKIP BUTTON 🚫",
-  "I’M TIRED OF BEING TIRED 😭",
-  "THE WIFI DROPPED MID GAME 🕹🔥",
-  "WHY SO MANY TABS OPEN?! 🤯"
+  "OH? YOU'RE SCREAMING NOW? CUTE. 😌",
+  "BET THAT FELT GOOD, HUH? 🥴",
+  "WOW, SUCH RAGE... MUCH SCREAM. 😏",
+  "DID THAT FIX YOUR WIFI THOUGH? 🧐",
+  "WHO HURT YOU? (besides Mondays) 💀",
+  "LOUDER, I CAN'T HEAR YOUR EXISTENTIAL CRISIS 😶‍🌫",
+  "IS THIS THERAPY OR JUST SCREAM-FM? 📢",
+  "AH YES, DIGITAL RAGE RELIEF™ 💥"
 ];
 
 const button = document.getElementById("screamButton");
@@ -23,12 +17,24 @@ const container = document.getElementById("rageContainer");
 button.addEventListener("click", () => {
   const randomIndex = Math.floor(Math.random() * messages.length);
   messageBox.textContent = messages[randomIndex];
+
+  rageSound.volume = 1;
   rageSound.currentTime = 0;
   rageSound.play();
 
-  // Animation effect
-  container.classList.add("glitch");
+  // Detect volume level (mocked via system)
+  let audioLevel = rageSound.volume;
+
+  // Force animation based on volume
+  container.classList.remove("explode", "glow");
+
+  if (audioLevel > 0.7) {
+    container.classList.add("explode");
+  } else {
+    container.classList.add("glow");
+  }
+
   setTimeout(() => {
-    container.classList.remove("glitch");
-  }, 400);
+    container.classList.remove("explode", "glow");
+  }, 600);
 });
