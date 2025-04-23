@@ -1,79 +1,86 @@
-body {
-  margin: 0;
-  padding: 0;
-  background: #0d0d0d;
-  color: #fff;
-  font-family: 'Segoe UI', sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow: hidden;
-}
+/* General Page Styling */
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      transition: background-color 1s ease, color 1s ease;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
 
-.container {
-  text-align: center;
-  padding: 20px;
-  border-radius: 12px;
-  background: #1a1a1a;
-  box-shadow: 0 0 20px #ff0066;
-  width: 90%;
-  max-width: 500px;
-}
+    h1 {
+      font-size: 3em;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 5px red;
+    }
 
-h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
+    /* Button Styling */
+    #screamButton {
+      background-color: red;
+      color: white;
+      padding: 20px 40px;
+      font-size: 1.5em;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
 
-button {
-  padding: 15px 30px;
-  background-color: #ff0066;
-  color: white;
-  border: none;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
+    #screamButton:hover {
+      background-color: darkred;
+    }
 
-button:hover {
-  background-color: #e6005c;
-}
+    /* Input Field Styling */
+    #userText {
+      padding: 10px;
+      font-size: 1.2em;
+      width: 50%;
+      margin-top: 20px;
+      background-color: #333;
+      border: 1px solid #444;
+      border-radius: 5px;
+      color: white;
+    }
 
-input[type="text"] {
-  padding: 10px;
-  margin-top: 15px;
-  width: 80%;
-  font-size: 1.2rem;
-  border-radius: 8px;
-}
+    /* Message Box Styling */
+    #messageBox {
+      margin-top: 20px;
+      font-size: 2em;
+      padding: 20px;
+      width: 70%;
+      background-color: #222;
+      border-radius: 5px;
+      border: 1px solid #444;
+    }
 
-select {
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 8px;
-}
+    /* Select Styling */
+    select {
+      margin-top: 20px;
+      font-size: 1.2em;
+      background-color: #333;
+      border: 1px solid #444;
+      border-radius: 5px;
+      color: white;
+      padding: 10px;
+    }
 
-#messageBox {
-  margin-top: 30px;
-  font-size: 1.3rem;
-  color: #f0f0f0;
-  margin-top: 15px;
-}
+    /* Adding Glowing Effect */
+    .glowing {
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
 
-body {
-  animation: backgroundGlow 5s infinite alternate;
-}
-
-@keyframes backgroundGlow {
-  0% {
-    background: #0d0d0d;
-  }
-  50% {
-    background: #333333;
-  }
-  100% {
-    background: #111111;
-  }
-}
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 20px red, 0 0 30px red;
+      }
+      100% {
+        text-shadow: 0 0 30px red, 0 0 50px red;
+      }
+    }
