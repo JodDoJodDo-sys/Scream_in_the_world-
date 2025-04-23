@@ -1,53 +1,35 @@
-    const screamButton = document.getElementById('screamButton');
-    const voiceSelect = document.getElementById('voiceSelect');
-    const userText = document.getElementById('userText');
-    const messageBox = document.getElementById('messageBox');
-    const rageBox = document.getElementById('rageBox');
+const screamButton = document.getElementById("screamButton");
+const messageBox = document.getElementById("messageBox");
+const userText = document.getElementById("userText");
+const voiceSelect = document.getElementById("voiceSelect");
 
-    function populateVoices() {
-      const voices = responsiveVoice.getVoices();
-      voices.forEach(voice => {
-        const option = document.createElement('option');
-        option.value = voice.name;
-        option.textContent = voice.name;
-        voiceSelect.appendChild(option);
-      });
-    }
+screamButton.addEventListener("click", () => {
+  const text = userText.value.trim();
+  const voice = voiceSelect.value;
 
-    function shake(intensity) {
-      document.body.style.transition = 'transform 0.1s';
-      document.body.style.transform = translate(${Math.random() * intensity}px, ${Math.random() * intensity}px);
-      setTimeout(() => {
-        document.body.style.transform = 'translate(0, 0)';
-      }, 100);
-    }
+  if (!text) {
+    messageBox.textContent = "SAY SOMETHING RAGEY!";
+    return;
+  }
 
-    screamButton.addEventListener('click', () => {
-      const text = userText.value.trim();
-      const selectedVoice = voiceSelect.value;
+  messageBox.textContent = text;
+  messageBox.classList.add("glow");
 
-      if (!text) {
-        messageBox.textContent = "Type something to scream!";
-        return;
-      }
+  responsiveVoice.speak(text, voice);
 
-      messageBox.textContent = "Screaming...";
+  // Background mood based on caps (shouting)
+  const capsRatio = text.split("").filter(c => c === c.toUpperCase()).length / text.length;
 
-      responsiveVoice.speak(text, selectedVoice, {
-        onstart: () => {
-          rageBox.style.animation = 'glow 0.5s infinite alternate';
-        },
-        onend: () => {
-          rageBox.style.animation = 'glow 2s infinite alternate';
-        },
-        volume: 1,
-        rate: 1,
-        pitch: 1
-      });
+  if (capsRatio > 0.6) {
+    document.body.style.background = "radial-gradient(circle, red, black)";
+    document.body.classList.add("shake");
+  } else {
+    document.body.style.background = "radial-gradient(circle, #00ffaa, #002211)";
+    document.body.classList.remove("shake");
+  }
 
-      // Optional: shake effect based on message length
-      const intensity = Math.min(text.length * 0.5, 50);
-      shake(intensity);
-    });
-
-    populateVoices();
+  setTimeout(() => {
+    messageBox.classList.remove("glow");
+    document.body.classList.remove("shake");
+  }, 2000);
+});
