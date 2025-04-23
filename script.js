@@ -1,27 +1,34 @@
-function scream() {
-  const text = document.getElementById("screamText").value;
-  const voiceOption = document.getElementById("voiceSelect").value;
-  const echoSound = document.getElementById("echoSound");
-  const feedback = document.getElementById("feedback");
+const messages = [
+  "I HATE MONDAYS 😤",
+  "WHY DO ADS EXIST 😩",
+  "STOP ASKING ME FOR A SUBSCRIPTION 💢",
+  "I JUST WANTED TO RELAX 🫠",
+  "WHY IS LIFE LIKE THIS 💀",
+  "GIVE ME WIFI THAT WORKS 😠",
+  "I SCREAMED AND I FEEL ALIVE 😵‍💫",
+  "NOTHING MAKES SENSE BUT OK 😶‍🌫",
+  "SCREAMING INTO THE VOID IS THERAPY 👹",
+  "I FORGOT MY PASSWORD AGAIN 😡",
+  "WHERE IS THE SKIP BUTTON 🚫",
+  "I’M TIRED OF BEING TIRED 😭",
+  "THE WIFI DROPPED MID GAME 🕹🔥",
+  "WHY SO MANY TABS OPEN?! 🤯"
+];
 
-  if (text.trim() === "") {
-    feedback.textContent = "Please type something first.";
-    return;
-  }
+const button = document.getElementById("screamButton");
+const messageBox = document.getElementById("messageBox");
+const rageSound = document.getElementById("rageSound");
+const container = document.getElementById("rageContainer");
 
-  const utterance = new SpeechSynthesisUtterance(text);
-  const voices = window.speechSynthesis.getVoices();
+button.addEventListener("click", () => {
+  const randomIndex = Math.floor(Math.random() * messages.length);
+  messageBox.textContent = messages[randomIndex];
+  rageSound.currentTime = 0;
+  rageSound.play();
 
-  if (voiceOption === "female") {
-    utterance.voice = voices.find(v => v.name.toLowerCase().includes("female") || v.name.toLowerCase().includes("woman")) || voices[0];
-  } else {
-    utterance.voice = voices.find(v => v.name.toLowerCase().includes("male") || v.name.toLowerCase().includes("man")) || voices[0];
-  }
-
-  utterance.pitch = 1;
-  utterance.rate = 0.9;
-  speechSynthesis.speak(utterance);
-  echoSound.play();
-
-  feedback.textContent = "Screamed into the void...";
-}
+  // Animation effect
+  container.classList.add("glitch");
+  setTimeout(() => {
+    container.classList.remove("glitch");
+  }, 400);
+});
