@@ -19,7 +19,7 @@ window.speechSynthesis.onvoiceschanged = () => {
 
 function changeBackground() {
   const randomColor = colours[Math.floor(Math.random() * colours.length)];
-  document.body.style.background = radial-gradient(circle, ${randomColor} 0%, #000000 100%);
+  document.body.style.backgroundColor = randomColor;
 }
 
 screamButton.addEventListener("click", () => {
