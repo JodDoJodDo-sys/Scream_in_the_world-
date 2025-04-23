@@ -1,22 +1,48 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RAGE PAGE</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <div class="container" id="rageBox">
-    <h1>RAGE PAGE</h1><textarea id="userText" rows="4" placeholder="Type your rage here..."></textarea><br />
+  <div class="container">
+    <h1>😤 RAGE PAGE 😤</h1>
 
-<label for="voiceSelect">Choose Voice:</label>
-<select id="voiceSelect"></select><br />
+    <input type="text" id="userText" placeholder="Type your rage here..." />
 
-<button id="screamButton">SCREAM</button>
+    <label for="voiceSelect">Choose Voice:</label>
+    <select id="voiceSelect">
+      <option value="UK English Male">UK English (Male)</option>
+      <option value="UK English Female">UK English (Female)</option>
+      <option value="US English Male">US English (Male)</option>
+      <option value="US English Female">US English (Female)</option>
+      <option value="Spanish Male">Spanish (Male)</option>
+      <option value="Spanish Female">Spanish (Female)</option>
+      <option value="French Male">French (Male)</option>
+      <option value="French Female">French (Female)</option>
+      <option value="German Male">German (Male)</option>
+      <option value="German Female">German (Female)</option>
+      <option value="Italian Male">Italian (Male)</option>
+      <option value="Italian Female">Italian (Female)</option>
+      <option value="Portuguese Male">Portuguese (Male)</option>
+      <option value="Portuguese Female">Portuguese (Female)</option>
+      <option value="Dutch Male">Dutch (Male)</option>
+      <option value="Dutch Female">Dutch (Female)</option>
+      <option value="Russian Male">Russian (Male)</option>
+      <option value="Russian Female">Russian (Female)</option>
+      <option value="Japanese Male">Japanese (Male)</option>
+      <option value="Japanese Female">Japanese (Female)</option>
+      <option value="Chinese Male">Chinese (Male)</option>
+      <option value="Chinese Female">Chinese (Female)</option>
+    </select>
 
-<div id="messageBox">Click the button to scream into the void...</div>
+    <button id="screamButton">SCREAM</button>
+    <div id="messageBox">Click the button to scream into the void...</div>
+  </div>
 
-  </div>  
-  <script src="https://code.responsivevoice.org/responsivevoice.js?key=zleSu5a9"></script>  
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=zleSu5a9"></script>
+  <script src="script.js"></script>
 </body>
 </html>
