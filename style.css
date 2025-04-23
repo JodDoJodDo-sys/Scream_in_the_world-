@@ -38,6 +38,7 @@ textarea {
   border-radius: 30px;
   font-size: 1rem;
   resize: none;
+  box-sizing: border-box; /* Prevents text from overflowing */
 }
 
 select {
