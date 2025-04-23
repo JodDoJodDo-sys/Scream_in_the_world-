@@ -5,22 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RAGE PAGE</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://code.responsivevoice.org/responsivevoice.js?key=zleSu5a9"></script> <!-- Replace with your key -->
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_UNIQUE_KEY"></script>
 </head>
 <body>
   <div class="container">
     <h1>😤 RAGE PAGE 😤</h1>
-    <input type="text" id="userText" placeholder="Type your rage here..." />
-    <select id="voiceSelect">
-      <option value="UK English Male">Male Voice</option>
-      <option value="UK English Female">Female Voice</option>
-    </select>
+    
     <button id="screamButton">SCREAM</button>
+    <input type="text" id="userText" placeholder="Type your rage here..." />
+    
+    <label for="voiceSelect">Choose Voice:</label>
+    <select id="voiceSelect">
+      <option value="UK English Male">UK English (Male)</option>
+      <option value="UK English Female">UK English (Female)</option>
+      <option value="US English Male">US English (Male)</option>
+      <option value="US English Female">US English (Female)</option>
+    </select>
+
     <div id="messageBox">Click the button to scream into the void...</div>
-    <img id="rageMeme" src="" alt="Daily Rage Meme" />
   </div>
-  <!-- Online sound -->
-  <audio id="rageSound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
+
   <script src="script.js"></script>
 </body>
 </html>
