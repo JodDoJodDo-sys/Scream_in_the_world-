@@ -3,15 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RAGE PAGE</title>
+  <title>Scream Into The Void 😱</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>😤 RAGE PAGE 😤</h1>
-    <button id="screamButton">SCREAM</button>
-    <div id="messageBox">Click the button to scream into the void...</div>
+    <h1>Scream Into The Void</h1>
+    <textarea id="screamInput" placeholder="Type your scream..."></textarea>
+    <div class="controls">
+      <select id="voiceSelect"></select>
+      <button onclick="scream()">SCREAM</button>
+    </div>
+    <p class="note">No one will hear you... but the void will.</p>
   </div>
+
+  <audio id="echoSound" src="https://freesound.org/data/previews/189/189777_2394245-lq.mp3"></audio>
+
   <script src="script.js"></script>
 </body>
 </html>
