@@ -20,21 +20,21 @@ button.addEventListener("click", () => {
 
   rageSound.volume = 1;
   rageSound.currentTime = 0;
-  rageSound.play();
 
-  // Detect volume level (mocked via system)
-  let audioLevel = rageSound.volume;
-
-  // Force animation based on volume
-  container.classList.remove("explode", "glow");
-
-  if (audioLevel > 0.7) {
-    container.classList.add("explode");
-  } else {
-    container.classList.add("glow");
-  }
-
-  setTimeout(() => {
+  rageSound.play().then(() => {
+    // It played successfully!
     container.classList.remove("explode", "glow");
-  }, 600);
+    container.classList.add("explode");
+
+    setTimeout(() => {
+      container.classList.remove("explode");
+    }, 800);
+  }).catch(error => {
+    // If blocked (e.g., autoplay issue), fallback glow
+    console.warn("Sound failed to play. Maybe muted? ", error);
+    container.classList.add("glow");
+    setTimeout(() => {
+      container.classList.remove("glow");
+    }, 800);
+  });
 });
