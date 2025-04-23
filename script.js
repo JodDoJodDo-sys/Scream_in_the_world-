@@ -23,12 +23,8 @@ button.addEventListener("click", () => {
   // Play sound
   rageSound.play();
 
-  // Change background color based on volume
-  if (rageSound.volume > 0.5) {
-    document.body.style.backgroundColor = "#ff0000"; // Angry Red
-  } else {
-    document.body.style.backgroundColor = "#00ff00"; // Calm Green
-  }
+  // Speak the message
+  speakText();
 
   // Fetch a random meme image for daily rage meme
   fetchDailyMeme();
@@ -38,7 +34,20 @@ button.addEventListener("click", () => {
   animatePageEffects();
 });
 
-// Function to change background color randomly
+// Function to speak text input by user
+function speakText() {
+  const text = document.getElementById("userText").value || messageBox.textContent;
+  const voice = document.getElementById("voiceSelect").value;
+  responsiveVoice.speak(text, voice);
+}
+
+// Fetch daily rage meme
+function fetchDailyMeme() {
+  // Replace with an actual URL for random rage memes
+  rageMeme.src = "https://i.imgur.com/AB6sYI0.jpg"; // Meme URL
+}
+
+// Function to change background color dynamically
 function changeBackgroundColor() {
   const colors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00"];
   document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
@@ -51,24 +60,6 @@ function animatePageEffects() {
     document.body.classList.remove('shake');
   }, 1000);
 }
-
-// Fetch daily rage meme
-function fetchDailyMeme() {
-  // Placeholder for meme API or link to fetch image (you can replace it with actual API)
-  rageMeme.src = "https://i.imgur.com/AB6sYI0.jpg"; // Replace with real dynamic API or meme URL
-}
-
-// Function to speak text input by user
-function speakText() {
-  const text = document.getElementById("userText").value;
-  const voice = document.getElementById("voiceSelect").value;
-  responsiveVoice.speak(text, voice);
-}
-
-// Event listener for speech functionality
-document.getElementById("screamButton").addEventListener("click", function() {
-  speakText();
-});
 
 // Dynamic animation for shaking page
 const style = document.createElement('style');
