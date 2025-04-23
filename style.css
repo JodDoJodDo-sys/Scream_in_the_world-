@@ -1,97 +1,79 @@
-/* General Page Styling */
-    body {
-      background-color: black;
-      color: white;
-      font-family: 'Arial', sans-serif;
-      text-align: center;
+    /* Basic Reset */
+    * {
       margin: 0;
       padding: 0;
-      transition: background-color 1s ease, color 1s ease;
-      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    /* Page Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      overflow: hidden;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: #ff4c4c;
+      border-radius: 15px;
+      padding: 30px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     h1 {
       font-size: 3em;
-      font-weight: bold;
-      margin-bottom: 30px;
-      text-shadow: 2px 2px 5px red;
+      margin-bottom: 20px;
+      color: #fff;
     }
 
-    /* Button Styling */
     #screamButton {
-      background-color: red;
-      color: white;
-      padding: 20px 40px;
-      font-size: 1.5em;
-      cursor: pointer;
+      background-color: #333;
+      color: #fff;
+      padding: 15px 30px;
       border: none;
       border-radius: 5px;
-      transition: all 0.3s;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
     #screamButton:hover {
-      background-color: darkred;
+      background-color: #444;
+      transform: scale(1.05);
     }
 
-    /* Input Field Styling */
-    #userText {
+    select, input[type="text"] {
+      width: 100%;
       padding: 10px;
-      font-size: 1.2em;
-      width: 50%;
-      margin-top: 20px;
-      background-color: #333;
-      border: 1px solid #444;
+      margin: 15px 0;
       border-radius: 5px;
-      color: white;
+      font-size: 1em;
     }
 
-    /* Message Box Styling */
     #messageBox {
-      margin-top: 20px;
-      font-size: 2em;
-      padding: 20px;
-      width: 70%;
-      background-color: #222;
+      background-color: #fff;
       border-radius: 5px;
-      border: 1px solid #444;
-    }
-
-    /* Select Styling */
-    select {
+      padding: 15px;
       margin-top: 20px;
       font-size: 1.2em;
-      background-color: #333;
-      border: 1px solid #444;
-      border-radius: 5px;
-      color: white;
-      padding: 10px;
+      color: #ff4c4c;
+      border: 2px solid #ff4c4c;
+      min-height: 50px;
     }
 
-    /* Adding Glowing Effect */
-    .glowing {
-      animation: glow 1.5s ease-in-out infinite alternate;
+    #messageBox.shake {
+      animation: shake 0.5s ease-in-out;
     }
 
-    @keyframes glow {
-      0% {
-        text-shadow: 0 0 20px red, 0 0 30px red;
-      }
-      100% {
-        text-shadow: 0 0 30px red, 0 0 50px red;
-      }
-    }
-
-    /* Shake effect */
-    .shake {
-      animation: shakeAnimation 0.5s ease-in-out;
-    }
-
-    @keyframes shakeAnimation {
+    @keyframes shake {
       0% { transform: translateX(0); }
       25% { transform: translateX(-10px); }
       50% { transform: translateX(10px); }
