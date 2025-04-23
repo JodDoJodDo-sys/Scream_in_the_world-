@@ -43,6 +43,8 @@ function handleVolumeEffect() {
     // Shake the page if the volume is high
     document.body.classList.add("shake");
     setTimeout(() => document.body.classList.remove("shake"), 500);
+    messageBox.classList.add("shake");
+    setTimeout(() => messageBox.classList.remove("shake"), 500);
   } else {
     // Apply glowing effect if the volume is low
     document.body.classList.add("glowing");
