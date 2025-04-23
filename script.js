@@ -5,11 +5,12 @@ const messageBox = document.getElementById("messageBox");
 
 const colours = ["#ff0066", "#6600ff", "#00cccc", "#ffcc00", "#00ff99", "#cc3333", "#0099ff", "#ff0099"];
 
-// Load voices
+// Load English UK voices
 window.speechSynthesis.onvoiceschanged = () => {
   const voices = window.speechSynthesis.getVoices();
+  const englishUKVoices = voices.filter(voice => voice.lang === 'en-GB');
   voiceSelect.innerHTML = '';  // Clear previous options
-  voices.forEach(voice => {
+  englishUKVoices.forEach(voice => {
     const option = document.createElement("option");
     option.value = voice.name;
     option.textContent = ${voice.name} (${voice.lang});
