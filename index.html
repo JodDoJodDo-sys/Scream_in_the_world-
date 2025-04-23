@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RAGE PAGE</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_UNIQUE_KEY"></script> <!-- Replace with your key -->
 </head>
 <body>
-  <div class="container" id="rageContainer">
+  <div class="container">
     <h1>😤 RAGE PAGE 😤</h1>
-    <button id="screamButton">SCREAM INTO THE VOID</button>
-    <div id="messageBox">Let your scream be heard...</div>
-    <audio id="rageSound" preload="auto">
-      <source src="https://www.myinstants.com/media/sounds/wilhelm-scream.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
+    <input type="text" id="userText" placeholder="Type your rage here..." />
+    <select id="voiceSelect">
+      <option value="UK English Male">Male Voice</option>
+      <option value="UK English Female">Female Voice</option>
+    </select>
+    <button id="screamButton">SCREAM</button>
+    <div id="messageBox">Click the button to scream into the void...</div>
+    <img id="rageMeme" src="" alt="Daily Rage Meme" />
   </div>
-
-  <div class="meme-section">
-    <h2>Daily Rage Meme</h2>
-    <img src="https://i.kym-cdn.com/photos/images/newsfeed/001/505/948/30c.jpg" alt="relatable meme" />
-  </div>
-
+  <audio id="rageSound" src="https://cdn.pixabay.com/download/audio/2022/10/24/audio_16d1e7989a.mp3?filename=screaming-echo-124050.mp3" preload="auto"></audio>
   <script src="script.js"></script>
 </body>
 </html>
