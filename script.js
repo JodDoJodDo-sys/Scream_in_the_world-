@@ -1,34 +1,90 @@
-const screamButton = document.getElementById("screamButton");
-const userText = document.getElementById("userText");
-const voiceSelect = document.getElementById("voiceSelect");
-const messageBox = document.getElementById("messageBox");
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(-45deg, #1a1a1a, #333, #222, #111);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+  font-family: 'Arial', sans-serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background-color 0.5s ease;
+}
 
-screamButton.addEventListener("click", () => {
-  const message = userText.value.trim();
-  if (!message) {
-    messageBox.textContent = "Type something first!";
-    return;
-  }
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-  messageBox.textContent = message;
+.container {
+  text-align: center;
+  max-width: 500px;
+  padding: 30px;
+  background: #222;
+  border-radius: 30px;
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
+  transition: box-shadow 0.3s ease;
+}
 
-  const selectedVoice = voiceSelect.value;
-  responsiveVoice.speak(message, selectedVoice);
+textarea {
+  margin-top: 10px;
+  padding: 15px;
+  width: 100%;
+  height: 120px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  resize: none;
+}
 
-  // Glow color based on voice (positive vs dramatic)
-  if (selectedVoice.includes("Spanish") || selectedVoice.includes("French") || selectedVoice.includes("Japanese")) {
-    messageBox.style.borderColor = "dodgerblue";
-    messageBox.style.boxShadow = "0 0 20px dodgerblue";
-  } else {
-    messageBox.style.borderColor = "red";
-    messageBox.style.boxShadow = "0 0 20px red";
-  }
+select {
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 1rem;
+}
 
-  // Add shaking and vibration
-  messageBox.classList.add("shake");
-  navigator.vibrate([100, 50, 100]);
+#screamButton {
+  margin-top: 20px;
+  width: 100%;
+  height: 60px;
+  border-radius: 50px;
+  border: none;
+  background-color: #ff3333;
+  font-size: 1.3rem;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
 
-  setTimeout(() => {
-    messageBox.classList.remove("shake");
-  }, 1000);
-});
+#screamButton:hover {
+  background-color: #cc0000;
+}
+
+#messageBox {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  background: black;
+  color: lime;
+  border: 2px solid lime;
+  box-shadow: 0 0 20px lime;
+  transition: all 0.2s ease;
+}
+
+.shake {
+  animation: shake 0.3s infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  25% { transform: translate(-1px, -2px) rotate(-1deg); }
+  50% { transform: translate(-3px, 0px) rotate(1deg); }
+  75% { transform: translate(2px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -1px) rotate(-1deg); }
+}
