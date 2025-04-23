@@ -69,9 +69,24 @@ button.addEventListener("click", () => {
 
   // Speak the message with the selected voice
   responsiveVoice.speak(messageBox.textContent, voice);
+
+  // Random color effect on scream press
+  changeColor();
 });
 
 userText.addEventListener("input", () => {
   const customText = userText.value;
   messageBox.textContent = customText;
 });
+
+function changeColor() {
+  const colors = ["#FF5733", "#33FF57", "#5733FF", "#FF33A1", "#F1C40F", "#9B59B6"];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+  document.body.style.backgroundColor = randomColor;
+  document.body.style.color = "white";
+  setTimeout(() => {
+    document.body.style.backgroundColor = "black";
+    document.body.style.color = "white";
+  }, 1500); // Reset color after 1.5 seconds
+}
