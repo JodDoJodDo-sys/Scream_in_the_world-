@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scream Into The Void 😱</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scream Into The Void</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="stars"></div>
+
   <div class="container">
     <h1>Scream Into The Void</h1>
-    <textarea id="screamInput" placeholder="Type your scream..."></textarea>
+    <textarea id="screamText" placeholder="Type your scream..."></textarea>
+
     <div class="controls">
-      <select id="voiceSelect"></select>
+      <select id="voiceSelect">
+        <option value="female">Female Voice</option>
+        <option value="male">Male Voice</option>
+      </select>
       <button onclick="scream()">SCREAM</button>
     </div>
-    <p class="note">No one will hear you... but the void will.</p>
+
+    <p id="feedback"></p>
   </div>
 
-  <audio id="echoSound" src="https://freesound.org/data/previews/189/189777_2394245-lq.mp3"></audio>
+  <audio id="echoSound" src="https://cdn.pixabay.com/download/audio/2022/10/24/audio_16d1e7989a.mp3?filename=screaming-echo-124050.mp3"></audio>
 
   <script src="script.js"></script>
 </body>
