@@ -3,6 +3,26 @@ const userText = document.getElementById("userText");
 const voiceSelect = document.getElementById("voiceSelect");
 const messageBox = document.getElementById("messageBox");
 
+const colours = ["#ff0066", "#6600ff", "#00cccc", "#ffcc00", "#00ff99", "#cc3333", "#0099ff", "#ff0099"];
+
+// Load voices
+window.speechSynthesis.onvoiceschanged = () => {
+  const voices = window.speechSynthesis.getVoices();
+  voiceSelect.innerHTML = '';  // Clear previous options
+  voices.forEach(voice => {
+    const option = document.createElement("option");
+    option.value = voice.name;
+    option.textContent = ${voice.name} (${voice.lang});
+    voiceSelect.appendChild(option);
+  });
+};
+
+// Function to change background with smooth transition
+function changeBackground() {
+  const randomColor = colours[Math.floor(Math.random() * colours.length)];
+  document.body.style.background = linear-gradient(-45deg, ${randomColor}, #222);
+}
+
 screamButton.addEventListener("click", () => {
   const message = userText.value.trim();
   if (!message) {
@@ -10,24 +30,24 @@ screamButton.addEventListener("click", () => {
     return;
   }
 
+  // Set the message and apply background change
   messageBox.textContent = message;
+  changeBackground();
 
+  // Get the selected voice
+  const utterance = new SpeechSynthesisUtterance(message);
   const selectedVoice = voiceSelect.value;
-  responsiveVoice.speak(message, selectedVoice);
-
-  // Glow color based on voice (positive vs dramatic)
-  if (selectedVoice.includes("Spanish") || selectedVoice.includes("French") || selectedVoice.includes("Japanese")) {
-    messageBox.style.borderColor = "dodgerblue";
-    messageBox.style.boxShadow = "0 0 20px dodgerblue";
-  } else {
-    messageBox.style.borderColor = "red";
-    messageBox.style.boxShadow = "0 0 20px red";
+  const voice = speechSynthesis.getVoices().find(v => v.name === selectedVoice);
+  if (voice) {
+    utterance.voice = voice;
   }
+  speechSynthesis.speak(utterance);
 
-  // Add shaking and vibration
+  // Add shake animation and vibration
   messageBox.classList.add("shake");
   navigator.vibrate([100, 50, 100]);
 
+  // Remove shake animation after it completes
   setTimeout(() => {
     messageBox.classList.remove("shake");
   }, 1000);
