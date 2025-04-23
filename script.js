@@ -5,17 +5,23 @@ const messageBox = document.getElementById("messageBox");
 
 const colours = ["#ff0066", "#6600ff", "#00cccc", "#ffcc00", "#00ff99", "#cc3333", "#0099ff", "#ff0099"];
 
-// Load English UK voices
-window.speechSynthesis.onvoiceschanged = () => {
+// Ensure voices load
+window.speechSynthesis.onvoiceschanged = function() {
   const voices = window.speechSynthesis.getVoices();
   const englishUKVoices = voices.filter(voice => voice.lang === 'en-GB');
-  voiceSelect.innerHTML = '';  // Clear previous options
-  englishUKVoices.forEach(voice => {
-    const option = document.createElement("option");
-    option.value = voice.name;
-    option.textContent = ${voice.name} (${voice.lang});
-    voiceSelect.appendChild(option);
-  });
+  voiceSelect.innerHTML = ''; // Clear any previous options
+
+  if (englishUKVoices.length > 0) {
+    englishUKVoices.forEach(function(voice) {
+      const option = document.createElement('option');
+      option.value = voice.name;
+      option.textContent = ${voice.name} (${voice.lang});
+      voiceSelect.appendChild(option);
+    });
+
+    // Select the first available voice
+    voiceSelect.value = englishUKVoices[0].name;
+  }
 };
 
 // Function to change background with smooth transition
