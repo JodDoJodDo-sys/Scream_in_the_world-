@@ -1,61 +1,53 @@
-const button = document.getElementById("screamButton");
-const messageBox = document.getElementById("messageBox");
-const userText = document.getElementById("userText");
-const voiceSelect = document.getElementById("voiceSelect");
+    const screamButton = document.getElementById('screamButton');
+    const voiceSelect = document.getElementById('voiceSelect');
+    const userText = document.getElementById('userText');
+    const messageBox = document.getElementById('messageBox');
+    const rageBox = document.getElementById('rageBox');
 
-// Initialize default voice settings
-let currentVoice = "UK English Male"; // Default voice
+    function populateVoices() {
+      const voices = responsiveVoice.getVoices();
+      voices.forEach(voice => {
+        const option = document.createElement('option');
+        option.value = voice.name;
+        option.textContent = voice.name;
+        voiceSelect.appendChild(option);
+      });
+    }
 
-// Function to update the voice based on user selection
-function setVoice(voice) {
-  currentVoice = voice;
-}
+    function shake(intensity) {
+      document.body.style.transition = 'transform 0.1s';
+      document.body.style.transform = translate(${Math.random() * intensity}px, ${Math.random() * intensity}px);
+      setTimeout(() => {
+        document.body.style.transform = 'translate(0, 0)';
+      }, 100);
+    }
 
-// Change voice when user selects different option
-voiceSelect.addEventListener("change", () => {
-  setVoice(voiceSelect.value);
-});
+    screamButton.addEventListener('click', () => {
+      const text = userText.value.trim();
+      const selectedVoice = voiceSelect.value;
 
-// Handle the scream button click
-button.addEventListener("click", () => {
-  // Get custom text typed by the user or use default message
-  const customMessage = userText.value.trim();
-  if (customMessage === "") {
-    messageBox.textContent = "No message entered. Please type something!";
-    return;
-  }
-  
-  // Display the custom message entered by the user
-  messageBox.textContent = customMessage;
+      if (!text) {
+        messageBox.textContent = "Type something to scream!";
+        return;
+      }
 
-  // Speak the message in the selected voice
-  responsiveVoice.speak(customMessage, currentVoice);
+      messageBox.textContent = "Screaming...";
 
-  // Handle the volume effect (shake or glowing)
-  handleVolumeEffect();
-});
+      responsiveVoice.speak(text, selectedVoice, {
+        onstart: () => {
+          rageBox.style.animation = 'glow 0.5s infinite alternate';
+        },
+        onend: () => {
+          rageBox.style.animation = 'glow 2s infinite alternate';
+        },
+        volume: 1,
+        rate: 1,
+        pitch: 1
+      });
 
-// Function to handle volume effects (shake or glowing)
-function handleVolumeEffect() {
-  const volume = Math.random(); // Simulate volume for demonstration
-  
-  if (volume > 0.5) {
-    // Shake the page if the volume is high
-    document.body.classList.add("shake");
-    setTimeout(() => document.body.classList.remove("shake"), 500);
-    messageBox.classList.add("shake");
-    setTimeout(() => messageBox.classList.remove("shake"), 500);
-  } else {
-    // Apply glowing effect if the volume is low
-    document.body.classList.add("glowing");
-    setTimeout(() => document.body.classList.remove("glowing"), 1500);
-  }
-}
+      // Optional: shake effect based on message length
+      const intensity = Math.min(text.length * 0.5, 50);
+      shake(intensity);
+    });
 
-// Handle custom text input by the user
-userText.addEventListener("input", () => {
-  // When the user types, speak the text they input
-  const customText = userText.value;
-  messageBox.textContent = customText;
-  responsiveVoice.speak(customText, currentVoice);
-});
+    populateVoices();
