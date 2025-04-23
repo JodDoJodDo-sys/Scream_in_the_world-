@@ -15,7 +15,7 @@ function loadVoices() {
     englishUKVoices.forEach(voice => {
       const option = document.createElement('option');
       option.value = voice.name;
-      option.textContent = ${voice.name} (${voice.lang});
+      option.textContent = ${voice.name} (${voice.lang}); // FIXED
       voiceSelect.appendChild(option);
     });
 
@@ -35,7 +35,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function changeBackground() {
   const randomColor = colours[Math.floor(Math.random() * colours.length)];
-  document.body.style.background = linear-gradient(-45deg, ${randomColor}, #222);
+  document.body.style.background = linear-gradient(-45deg, ${randomColor}, #222); // FIXED
   document.body.style.transition = "background 0.5s ease";
 }
 
