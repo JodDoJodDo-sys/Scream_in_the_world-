@@ -1,25 +1,45 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to top left, #000000, #1a1a1a);
+  background: #0d0d0d;
   color: #fff;
   font-family: 'Segoe UI', sans-serif;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow: hidden;
+  justify-content: flex-start;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .container {
   text-align: center;
   padding: 30px;
+  margin-top: 60px;
   border-radius: 20px;
-  background: #1f1f1f;
+  background: #1a1a1a;
   box-shadow: 0 0 30px #ff0066;
   width: 90%;
   max-width: 600px;
-  transition: transform 0.3s ease;
+  transition: all 0.4s ease-in-out;
+}
+
+.glow {
+  box-shadow: 0 0 60px 10px #00ffcc;
+}
+
+.explode {
+  transform: scale(1.1) rotate(2deg);
+  box-shadow: 0 0 100px 30px #ff0066, 0 0 40px 10px #ff3300 inset;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0% { transform: translate(0); }
+  25% { transform: translate(-5px, 5px); }
+  50% { transform: translate(5px, -5px); }
+  75% { transform: translate(-3px, -3px); }
+  100% { transform: translate(0); }
 }
 
 h1 {
@@ -50,16 +70,15 @@ button:hover {
   transition: all 0.3s;
 }
 
-/* Animation */
-.glitch {
-  animation: glitch 0.4s ease-in-out;
+/* Meme Section */
+.meme-section {
+  margin: 40px 20px;
+  text-align: center;
 }
 
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-5px, 5px); }
-  40% { transform: translate(5px, -5px); }
-  60% { transform: translate(-5px, -5px); }
-  80% { transform: translate(5px, 5px); }
-  100% { transform: translate(0); }
+.meme-section img {
+  max-width: 400px;
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #333;
 }
