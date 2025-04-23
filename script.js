@@ -18,9 +18,8 @@ window.speechSynthesis.onvoiceschanged = () => {
 };
 
 function changeBackground() {
-  const glowColours = ["#ff0066", "#00ccff", "#33ff00", "#ffcc00", "#cc00ff", "#ff3300"];
-  const colour = glowColours[Math.floor(Math.random() * glowColours.length)];
-  document.body.style.background = radial-gradient(circle, ${colour} 0%, #000000 100%);
+  const randomColor = colours[Math.floor(Math.random() * colours.length)];
+  document.body.style.background = radial-gradient(circle, ${randomColor} 0%, #000000 100%);
 }
 
 screamButton.addEventListener("click", () => {
