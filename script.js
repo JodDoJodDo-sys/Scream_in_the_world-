@@ -1,34 +1,27 @@
-
-const screamInput = document.getElementById("screamInput");
-const voiceSelect = document.getElementById("voiceSelect");
-const echoSound = document.getElementById("echoSound");
-
-// Load available voices
-let voices = [];
-
-function loadVoices() {
-  voices = speechSynthesis.getVoices();
-  voiceSelect.innerHTML = '';
-  voices.forEach((voice, index) => {
-    const option = document.createElement("option");
-    option.value = index;
-    option.textContent = ${voice.name} (${voice.lang});
-    voiceSelect.appendChild(option);
-  });
-}
-
-window.speechSynthesis.onvoiceschanged = loadVoices;
-
-// Speak the text
 function scream() {
-  const text = screamInput.value.trim();
-  if (!text) return;
+  const text = document.getElementById("screamText").value;
+  const voiceOption = document.getElementById("voiceSelect").value;
+  const echoSound = document.getElementById("echoSound");
+  const feedback = document.getElementById("feedback");
 
-  const utter = new SpeechSynthesisUtterance(text);
-  utter.voice = voices[voiceSelect.value];
-  utter.pitch = 1;
-  utter.rate = 1;
+  if (text.trim() === "") {
+    feedback.textContent = "Please type something first.";
+    return;
+  }
 
+  const utterance = new SpeechSynthesisUtterance(text);
+  const voices = window.speechSynthesis.getVoices();
+
+  if (voiceOption === "female") {
+    utterance.voice = voices.find(v => v.name.toLowerCase().includes("female") || v.name.toLowerCase().includes("woman")) || voices[0];
+  } else {
+    utterance.voice = voices.find(v => v.name.toLowerCase().includes("male") || v.name.toLowerCase().includes("man")) || voices[0];
+  }
+
+  utterance.pitch = 1;
+  utterance.rate = 0.9;
+  speechSynthesis.speak(utterance);
   echoSound.play();
-  speechSynthesis.speak(utter);
+
+  feedback.textContent = "Screamed into the void...";
 }
